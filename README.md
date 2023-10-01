@@ -1,0 +1,2 @@
+# MySmartHome
+Dynamic web application
