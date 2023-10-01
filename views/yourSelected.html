@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        /* CSS style for table layout */
+        table {
+            font-family: 'Times New Roman', Times, serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 2px;
+        }
+    </style>
+
+    <title>This is the selected device page!</title>
+</head>
+
+<body>
+
+    <!-- Introduction to page -->
+    <h2> Selected device. </h2>
+    <p> This is the device you have chosen and it's input statuses </p>
+
+    <!-- Table to show selected device and its input feilds. -->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Switch</th>
+            <th>Open/Close</th>
+            <th>Temperature(°C)</th>
+            <th>Volume</th>
+            <th>Speed</th>
+            <th>Duration(mins)</th>
+        </tr>
+        <tr>
+            <%
+                if(yourDevices.length!=0){
+                var i=1;
+                yourDevices.forEach(function(yourDevices){ %>
+            <td><%= yourDevices.name%></td>
+            <td><%= yourDevices.switch%></td>
+            <td><%= yourDevices.move%></td>
+            <td><%= yourDevices.temp%></td>
+            <td><%= yourDevices.vol%></td>
+            <td><%= yourDevices.speed%></td>
+            <td><%= yourDevices.duration%></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+        <tr>
+            <td>No Data Found</td>
+        </tr>
+        <% } %>
+    </table>
+
+    <!-- Links to other pages. -->
+    <p><a href="/">Home | <a>
+                <a href="about">About | </a>
+                <a href="addDevices">Add a device | </a>
+                <a href="update">Update device | </a>
+                <a href="deleteDevice">Delete devices | </a>
+                <a href="yourDevices">View all devices </a>
+    </p>
+
+</body>
+
+</html>

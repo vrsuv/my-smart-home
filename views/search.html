@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+<title>Search webpage!</title>
+</head>
+
+<body>
+
+    <!-- Introduction to page. -->
+    <h1>This is your Search page. </h1>
+    <p>You can see the devices in the catalog. </p>
+    <p>Please choose <u>one</u> of the devices: </p>
+
+    <!-- Search bar for users to search for device. -->
+    <form action="/search-result-db" method="GET">
+        <input id="search-box" type="text" name="chosenDevice" required> 
+        <input type="submit" value="OK">
+    </form>
+
+    <!-- List of devices in the pre-defined list in the database. -->
+    <ol>
+        <% catalog.forEach(function(catalog){ %>
+        <li><%= catalog.name%></li>
+        <% }) %>
+    </ol>
+
+    <!-- Links to other pages. -->
+    <p><a href="/">Home | <a>
+        <a href="about">About | </a>
+        <a href="addDevices">Add a device | </a>
+        <a href="update">Update device | </a>
+        <a href="deleteDevice">Delete devices | </a>
+        <a href="yourDevices">View all devices </a>
+    </p>
+</body>
+ 
+</html>

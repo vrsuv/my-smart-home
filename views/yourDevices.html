@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        /* CSS for table layout. */
+        table {
+            font-family: 'Times New Roman', Times, serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 2px;
+        }
+    </style>
+
+    <title>List of devices webpage!</title>
+</head>
+
+<body>
+
+    <!-- Introduction to page. -->
+    <h1> This is your Devices' List Page </h1>
+    <p>These are the devices currently in your list:</p>
+
+    <!-- List of devices in the pre-defined list in the database. -->
+    <ol>
+        <% yourDevices.forEach(function(yourDevices){ %>
+        <li><%= yourDevices.name%></li>
+        <% }) %>
+    </ol>
+
+    <p> Please key in device name to view input statuses. </p>
+    
+    <!-- Search bar for users to key in device to be deleted. -->
+    <form action="/select-search-result-db" method="GET">
+        <input id="search-box" type="text" name="name">
+        <input type="submit" value="OK">
+    </form>
+
+    <!-- Link to other pages. -->
+    <p><a href="/">Home | <a>
+        <a href="about">About | </a>
+        <a href="addDevices">Add a device | </a>
+        <a href="update">Update device | </a>
+        <a href="deleteDevice">Delete devices | </a>
+        <a href="yourDevices">View all devices </a>
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        /* CSS for table layout. */
+        table {
+            font-family: 'Times New Roman', Times, serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 2px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        /* script for form validation. */
+        function validate() {
+            if (document.addForm.temp.value > 190 || document.addForm.temp.value < -20) {
+                alert("Please provide valid temperature!");
+                document.addForm.temp.focus();
+                return false;
+            }
+            return (true);
+        }
+    </script>
+
+    <title>This is the device status page!</title>
+</head>
+
+<body>
+
+    <!-- Introduction to page. -->
+    <h3>This is the device you have chosen and its initial input status.</h3>
+
+    <!-- Table to display chosen device. -->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Switch</th>
+            <th>Open/Close</th>
+            <th>Temperature(°C)</th>
+            <th>Volume</th>
+            <th>Speed</th>
+            <th>Duration(mins)</th>
+        </tr>
+        <tr>
+            <% 
+                if(catalog.length!=0){
+                catalog.forEach(function(catalog){ %>
+            <td><%= catalog.name%></td>
+            <td><%= catalog.switch%></td>
+            <td><%= catalog.move%></td>
+            <td><%= catalog.temp%></td>
+            <td><%= catalog.vol%></td>
+            <td><%= catalog.speed%></td>
+            <td><%= catalog.duration%></td>
+            <% }) %>
+            <% } else{ %>
+            <tr>
+                <td>No Data Found</td>
+            </tr>
+            <% } %>
+        </tr>
+    </table>
+
+    <h4>Please fill out the form to add chosen device and its input status into your list.</h4>
+
+    <!-- Form for users to change and add the chosen device. -->
+    <form name="addForm" method="POST" action="/deviceAdded" onsubmit="return(validate());">
+        <label for="name">Device name: </label>
+        <input id="name" type="text" name="name" required />
+    
+        <br><br>
+        <label for="switch">Switch (null if not applicable): </label>
+        <input id="switch" type="text" name="switch" required maxlength="4" required />
+    
+        <br><br>
+        <label for="move">Open/close (null if not applicable): </label>
+        <input id="move" type="text" name="move" required maxlength="5" required />
+    
+        <br><br>
+        <label for="temp">Temperature (0 if not applicable): </label>
+        <input id="temp" type="number" name="temp" required />
+    
+        <br><br>
+        <label for="vol">Volume (0 if not applicable): </label>
+        <input id="vol" type="number" name="vol" required />
+    
+        <br><br>
+        <label for="speed">Speed (0 if not applicable): </label>
+        <input id="speed" type="number" name="speed" required />
+    
+        <br><br>
+        <label for="duration">Duration (in minutes): </label>
+        <input id="duration" type="number" name="duration" required />
+    
+        <br><br>
+        <input type="submit" value="Add device to list" action="/deviceAdded">
+        <input type="reset" value="clear" action="/deviceAdded">
+    </form>
+
+    <!-- Links to other pages. -->
+    <p><a href="/">Home | <a>
+        <a href="about">About | </a>
+        <a href="addDevices">Add a device | </a>
+        <a href="update">Update device | </a>
+        <a href="deleteDevice">Delete devices | </a>
+        <a href="yourDevices">View all devices </a>
+    </p>
+</body>
+
+</html>

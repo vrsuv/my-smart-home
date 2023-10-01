@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        /* CSS for table layout. */
+        table {
+            font-family: 'Times New Roman', Times, serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 2px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        /* script for form validation. */
+        function validate() {
+            if (document.addForm.temp.value > 190 || document.addForm.temp.value < -20) {
+                alert("Please provide valid temperature!");
+                document.addForm.temp.focus();
+                return false;
+            }
+            return (true);
+        }
+    </script>
+
+    <title>This is the device confirm update page!</title>
+</head>
+
+<body>
+
+    <!-- Introduction to page -->
+    <h2> Confirm update of device. </h2>
+
+    <p>Device you wish to update: </p>
+    <!-- Table to show chosen device to be deleted. -->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Switch</th>
+            <th>Open/Close</th>
+            <th>Temperature(°C)</th>
+            <th>Volume</th>
+            <th>Speed</th>
+            <th>Duration(mins)</th>
+        </tr>
+        <tr>
+            <%
+                if(yourDevices.length!=0){
+                var i=1;
+                yourDevices.forEach(function(yourDevices){ %>
+            <td><%= yourDevices.name%></td>
+            <td><%= yourDevices.switch%></td>
+            <td><%= yourDevices.move%></td>
+            <td><%= yourDevices.temp%></td>
+            <td><%= yourDevices.vol%></td>
+            <td><%= yourDevices.speed%></td>
+            <td><%= yourDevices.duration%></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+        <tr>
+            <td>No Data Found</td>
+        </tr>
+        <% } %>
+    </table>
+
+    <br>
+
+    <h4>Please fill out the form to update this device.</h4>
+    
+    <!-- Form for users to change and update device. -->
+    <form name="addForm" method="POST" action="/updateDevice" onsubmit="return(validate());">
+        <label for="name">Device name: </label>
+        <input id="name" type="text" name="name" required />
+    
+        <br><br>
+        <label for="switch">Switch (null if not applicable): </label>
+        <input id="switch" type="text" name="switch" required maxlength="4" required />
+    
+        <br><br>
+        <label for="move">Open/close (null if not applicable): </label>
+        <input id="move" type="text" name="move" required maxlength="5" required />
+    
+        <br><br>
+        <label for="temp">Temperature (0 if not applicable): </label>
+        <input id="temp" type="number" name="temp" required />
+    
+        <br><br>
+        <label for="vol">Volume (0 if not applicable): </label>
+        <input id="vol" type="number" name="vol" required />
+    
+        <br><br>
+        <label for="speed">Speed (0 if not applicable): </label>
+        <input id="speed" type="number" name="speed" required />
+    
+        <br><br>
+        <label for="duration">Duration (in minutes): </label>
+        <input id="duration" type="number" name="duration" required />
+    
+        <br><br>
+        <input type="submit" value="Update device" action="/updateDevice">
+        <input type="reset" value="clear" action="/updateDevice">
+    </form>
+
+    <!-- Links to other pages. -->
+    <p><a href="/">Home | <a>
+        <a href="about">About | </a>
+        <a href="addDevices">Add a device | </a>
+        <a href="update">Update device | </a>
+        <a href="deleteDevice">Delete devices | </a>
+        <a href="yourDevices">View all devices </a>
+    </p>
+
+</body>
+
+</html>

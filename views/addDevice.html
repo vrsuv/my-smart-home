@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        /* script for form validation. */
+        function validate() {
+            if (document.addForm.temp.value > 190 || document.addForm.temp.value < -20) {
+                alert("Please provide valid temperature!");
+                document.addForm.temp.focus();
+                return false;
+            }
+            return (true);
+        }
+    </script>
+
+    <title>This is the devices page!</title>
+</head>
+
+<body>
+    <!-- Introduction to page -->
+    <h2> Add a new device </h2>
+    <p> Please fill out the form to add a new device and its initial statuses. </p>
+    
+    <!-- Form to fill in to add new device -->
+    <form name = "addForm" method="POST" action="/deviceAdded" onsubmit = "return(validate());">
+        <label for="name">Device name: </label>
+        <input id="name" type="text" name="name" required/>
+
+        <br><br>
+        <label for="switch">Switch (null if not applicable): </label>
+        <input id="switch" type="text" name="switch" required maxlength="4" required/>
+
+        <br><br>
+        <label for="move">Open/close (null if not applicable): </label>
+        <input id="move" type="text" name="move" required maxlength="5" required/>
+
+        <br><br> 
+        <label for="temp">Temperature (0 if not applicable): </label>
+        <input id="temp" type="number" name="temp" required/>
+
+        <br><br>
+        <label for="vol">Volume (0 if not applicable): </label>
+        <input id="vol" type="number" name="vol" required/>
+
+        <br><br>
+        <label for="speed">Speed (0 if not applicable): </label>
+        <input id="speed" type="number" name="speed" required/>
+
+        <br><br>
+        <label for="duration">Duration (in minutes): </label>
+        <input id="duration" type="number" name="duration" required/>
+
+        <br><br>
+        <input type="submit" value="Add to Device list" action="/deviceAdded">
+        <input type="reset" value="clear" action="/deviceAdded">
+    </form>
+
+    <!-- A button for users to click to search catalog. -->
+    <p>Or you may choose from our catalog to add into your device list</p>
+    <form action="/search" method="GET">
+        <input type="submit" value="Search catalog">
+    </form>
+
+    <!-- Links to other pages -->
+    <p><a href="/">Home | <a>
+        <a href="about">About | </a>
+        <a href="addDevices">Add a device | </a>
+        <a href="update">Update device | </a>
+        <a href="deleteDevice">Delete devices | </a>
+        <a href="yourDevices">View all devices </a>
+    </p>
+    
+</body>
+
+</html>
